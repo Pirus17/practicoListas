@@ -15,8 +15,8 @@ public class eListas3 {
     public static void main(String [] args){
      Scanner scr = new Scanner(System.in);
      ArrayList <Jugador> jugadores= new ArrayList();
-     Jugador datos= new Jugador();
-     for (int i=0; i<5;i++){
+     for (int i=0; i<3;i++){
+        Jugador datos= new Jugador();
         System.out.println("Ingrese nombre del jugador: ");
         datos.setNombre(scr.next());
         System.out.println("Ingrese apellido del jugador: ");
@@ -26,6 +26,9 @@ public class eListas3 {
         System.out.println("Ingrese goles del jugador: ");
         datos.setGoles(scr.nextInt());
         jugadores.add(datos);
+                }
+      for (int i=0; i<3;i++){
+          System.out.println(jugadores.get(0).getApellido());
                 }
     }
     
