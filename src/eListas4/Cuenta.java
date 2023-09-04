@@ -116,9 +116,12 @@ public class Cuenta {
 
     }
 
-    public Cuenta getDatos() {
-        return new Cuenta();
+    @Override
+    public String toString() {
+        return "Cuenta{" + "nroCuenta=" + nroCuenta + ", dniTitular=" + dniTitular + ", fechaApertura=" + fechaApertura + ", Activa=" + Activa + ", Saldo=" + Saldo + '}';
     }
+
+    
 
     public void activarCuenta() {
         this.Activa = true;

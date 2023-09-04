@@ -18,18 +18,20 @@ public class eLista4 {
         int op;
         ArrayList<Cuenta> cliente = new ArrayList();
         do {
-            Cuenta datos;
+            Boolean existe;
             int nroCuenta;
             System.out.println("1. ALTA DE CUENTA: ");
             System.out.println("2. DEPOSITAR: ");
             System.out.println("3. EXTRAER: ");
             System.out.println("4. BUSQUEDA POR DNI ");
             System.out.println("5. ACTIVAR CUENTA ");
-            System.out.println("6. ACTIVAR CUENTA ");
+            System.out.println("6. DESACTIVAR CUENTA ");
+            System.out.println("7. MOSTRAR TODOS LOS DATOS");
             System.out.println("Ingrese una opcion: ");
             op = sc.nextInt();
             switch (op) {
                 case 1:
+                    Cuenta datos;
                     /*System.out.println("ALTA DE CUENTA: ");
                 System.out.println("Ingrese numero de cuenta: ");
                 datos.setNroCuenta(sc.nextInt());
@@ -53,14 +55,11 @@ public class eLista4 {
                     nroCuenta = sc.nextInt();
                     for (int i = 0; i < cliente.size(); i++) {
                         if (cliente.get(i).getNroCuenta() == nroCuenta) {
-                            datos = new Cuenta();
-                            datos = cliente.get(i);
                             System.out.println("Ingrese el monto: ");
-                            if (datos.depositar(sc.nextFloat())) {
-                                cliente.set(i, datos);
-                                System.out.println("Extraccion Exitoso");
+                            if (cliente.get(i).depositar(sc.nextFloat())) {
+                                System.out.println("dep Exitoso");
                             } else {
-                                System.out.println("No pudo realizar la Extraccion");
+                                System.out.println("No pudo realizar la dep");
                             }
 
                             break;
@@ -74,65 +73,73 @@ public class eLista4 {
                     nroCuenta = sc.nextInt();
                     for (int i = 0; i < cliente.size(); i++) {
                         if (cliente.get(i).getNroCuenta() == nroCuenta) {
-                            datos = new Cuenta();
-                            datos = cliente.get(i);
                             System.out.println("Ingrese el monto: ");
-                            if (datos.extraer(sc.nextFloat())) {
-                                cliente.set(i, datos);
+                            if (cliente.get(i).extraer(sc.nextFloat())) {
                                 System.out.println("Extraccion Exitosa");
                             } else {
                                 System.out.println("No pudo realizar la Extraccion");
                             }
-
-                            break;
+                           
                         }
+                    
                     }
-                    case 4:
+                    break;
+                case 4:
                     System.out.println("BUSQUEDA POR DNI: ");
                     System.out.println("Ingrese DNI: ");
                     int DNI = sc.nextInt();
                     for (int i = 0; i < cliente.size(); i++) {
                         if (cliente.get(i).getDniTitular() == DNI) {
-                            System.out.println("Numero de Cuenta: "+cliente.get(i).getNroCuenta());
-                            System.out.println("Fecha: "+cliente.get(i).getFechaApertura());
-                            System.out.println("Saldo: "+cliente.get(i).getSaldo());
+                            System.out.println("Numero de Cuenta: " + cliente.get(i).getNroCuenta());
+                            System.out.println("Fecha: " + cliente.get(i).getFechaApertura());
+                            System.out.println("Saldo: " + cliente.get(i).getSaldo());
                             break;
-                        } else{ 
+                        } else {
                             System.out.println("No exite el cliente");
                             break;
                         }
-                            
+
                     }
-                    
-                   case 5:
+                    break;
+                case 5:
                     System.out.println("ACTIVAR CUENTA");
                     System.out.println("Ingrese numero de cuenta: ");
                     nroCuenta = sc.nextInt();
-                    for (int i = 0; i < cliente.size(); i++) {
+                    existe=false;
+                    for (int i = 0; i < cliente.size() && existe==false; i++) {
                         if (cliente.get(i).getNroCuenta() == nroCuenta) {
-                            datos = new Cuenta();
-                            datos = cliente.get(i);
-                            datos.activarCuenta();
-                            cliente.set(i, datos);
-                            break;
-                        }
-                    }  
-                    case 6:
+                            cliente.get(i).activarCuenta();
+                            existe=true;
+                            System.out.println("La cuenta se activo");
+                           }
+                    }
+                    if (!existe)
+                        System.out.println("No existe la cuenta");
+                    break;
+                case 6:
                     System.out.println("DESACTIVAR CUENTA");
                     System.out.println("Ingrese numero de cuenta: ");
                     nroCuenta = sc.nextInt();
-                    for (int i = 0; i < cliente.size(); i++) {
+                    existe=false;
+                    for (int i = 0; i < cliente.size() && existe==false; i++) {
                         if (cliente.get(i).getNroCuenta() == nroCuenta) {
-                            datos = new Cuenta();
-                            datos = cliente.get(i);
-                            datos.desactivarCuenta();
-                            cliente.set(i, datos);
-                            break;
+                            cliente.get(i).desactivarCuenta();
+                            existe=true;
+                            System.out.println("La cuenta se desactivo");
                         }
-                    }  
+                    }
+                    if (!existe)
+                        System.out.println("No existe la cuenta");
+                    break;
+                case 7:
+                    System.out.println("MOSTRAR DATOS");
+                    for (int i = 0; i < cliente.size(); i++) {
+                        System.out.println(cliente.get(i).toString());
+                    }
+                break;
             }
-        }while (op != 0);
-            int i = 0;
-        }
- 
+        } while (op != 0);
+        int i = 0;
     }
+
+}
